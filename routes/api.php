@@ -106,8 +106,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('showtimemovie', [ShowtimeController::class, 'showtimeMovie']);
 
     Route::middleware(['role:admin|admin_cinema'])->group(function () {
-
-        Route::post('/users/change-password/{id}',[UserController::class,'changePassword']);
+        // Users Management
+        Route::post('/users/change-password-admin/{id}',[UserController::class,'changePasswordAdmin']);
         Route::get('/users', [UserController::class, 'index']);
         Route::post('/users/create', [UserController::class, 'add']);
         Route::get('/users/{id}', [UserController::class, 'show']);
@@ -117,7 +117,7 @@ Route::middleware('auth:sanctum')->group(function () {
 // Admin Routes (auth:sanctum + role:admin)
     Route::middleware(['role:admin'])->group(function () {
         // Users Management
-
+    
         Route::delete('/users/{id}', [UserController::class, 'destroy']);
         Route::post('/users/{id}/restore', [UserController::class, 'restore']);
         Route::delete('/users/{id}/force-delete', [UserController::class, 'forceDelete']);
@@ -185,6 +185,8 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('delete/{id}', [RoleController::class, 'destroy']);
         });
     });
+
+
 
 
 // Admin Cinema Routes (auth:sanctum + role:admin_cinema)
