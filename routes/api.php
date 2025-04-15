@@ -106,7 +106,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('showtimemovie', [ShowtimeController::class, 'showtimeMovie']);
 
     Route::middleware(['role:admin|admin_cinema'])->group(function () {
-        // Users Management
+
         Route::post('/users/change-password/{id}',[UserController::class,'changePassword']);
         Route::get('/users', [UserController::class, 'index']);
         Route::post('/users/create', [UserController::class, 'add']);
